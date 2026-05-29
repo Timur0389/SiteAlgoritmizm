@@ -1,267 +1,563 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Социал-Алгоритмизм: Доктрина и Протоколы</title>
-    <style>
-        :root {
-            --bg-color: #fcfcfc;
-            --text-color: #1a1a1a;
-            --text-muted: #666666;
-            --accent-color: #000000;
-            --border-color: #e5e5e5;
-            --panel-bg: #ffffff;
-            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Социал-Алгоритмизм | Доктрина Порядка</title>
+  <!-- Preconnect для шрифтов -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Шрифты: Inter и Playfair Display -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <!-- Feather Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.1/feather.min.css">
+  <style>
+    /* RESET + СВЕТЛАЯ МИНИМАЛИСТИЧНАЯ БАЗА */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: var(--font-stack);
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
+    :root {
+      --bg: #FFFFFF;
+      --surface: #F9F9FB;
+      --card: #FFFFFF;
+      --text-primary: #1A1A1A;
+      --text-secondary: #5A5A66;
+      --text-light: #8E8E9A;
+      --border: #EAEAEF;
+      --accent: #2C2C3E;
+      --accent-soft: #F0F0F5;
+      --shadow-sm: 0 10px 25px -5px rgba(0, 0, 0, 0.02), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+      --shadow-md: 0 20px 35px -12px rgba(0, 0, 0, 0.05);
+      --transition: all 0.25s ease;
+    }
 
-        header {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 60px 20px 40px 20px;
-            border-bottom: 1px solid var(--border-color);
-        }
+    body {
+      background-color: var(--bg);
+      font-family: 'Inter', sans-serif;
+      color: var(--text-primary);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
 
-        .system-meta {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-        }
+    h1, h2, h3, .serif {
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
 
-        h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin: 0;
-            color: var(--accent-color);
-        }
+    h1 {
+      font-size: clamp(2.8rem, 8vw, 4.8rem);
+      line-height: 1.1;
+      font-weight: 600;
+    }
 
-        h2 {
-            font-size: 1.4rem;
-            font-weight: 600;
-            letter-spacing: -0.01em;
-            margin-top: 0;
-            margin-bottom: 20px;
-            color: var(--accent-color);
-        }
+    h2 {
+      font-size: clamp(1.8rem, 5vw, 2.5rem);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
 
-        h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-top: 30px;
-            margin-bottom: 10px;
-        }
+    .subhead {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      font-weight: 400;
+      max-width: 680px;
+    }
 
-        .container {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 60px;
-        }
+    .overline {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 600;
+      color: var(--text-light);
+      margin-bottom: 1rem;
+    }
 
-        @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            header {
-                padding-top: 40px;
-            }
-        }
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
 
-        .main-content section {
-            margin-bottom: 50px;
-        }
+    section {
+      padding: 5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
 
-        .lead-text {
-            font-size: 1.15rem;
-            color: #000;
-            font-weight: 400;
-        }
+    section:last-of-type {
+      border-bottom: none;
+    }
 
-        p {
-            color: #333;
-            font-size: 0.95rem;
-        }
+    /* Навигация */
+    .navbar {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
 
-        .sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
-        }
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
 
-        .block {
-            border-top: 1px solid var(--border-color);
-            padding-top: 20px;
-        }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      text-decoration: none;
+    }
 
-        .block-title {
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 15px;
-            color: var(--accent-color);
-        }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
 
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-weight: 500;
+      transition: var(--transition);
+    }
 
-        li {
-            font-size: 0.9rem;
-            padding: 10px 0;
-            border-bottom: 1px solid var(--border-color);
-            color: #333;
-        }
+    .nav-links a:hover {
+      color: var(--text-primary);
+    }
 
-        li:last-child {
-            border-bottom: none;
-        }
+    /* Кнопки */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      border-radius: 40px;
+      font-weight: 500;
+      transition: var(--transition);
+      cursor: pointer;
+      border: 1px solid transparent;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
 
-        .term-group {
-            margin-bottom: 16px;
-            font-size: 0.9rem;
-        }
+    .btn-primary {
+      background: var(--text-primary);
+      color: white;
+      border-color: var(--text-primary);
+    }
 
-        .term-label {
-            font-weight: 600;
-            display: block;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 4px;
-        }
+    .btn-primary:hover {
+      background: #2E2E3A;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
 
-        .term-value {
-            color: var(--text-color);
-        }
+    .btn-outline {
+      border-color: var(--border);
+      background: transparent;
+      color: var(--text-primary);
+    }
 
-        .alert-box {
-            background-color: #f5f5f5;
-            padding: 20px;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            border-left: 2px solid var(--accent-color);
-        }
+    .btn-outline:hover {
+      border-color: var(--text-primary);
+      background: var(--accent-soft);
+    }
 
-        footer {
-            max-width: 900px;
-            margin: 80px auto 40px auto;
-            padding: 20px;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            border-top: 1px solid var(--border-color);
-        }
-    </style>
+    /* Hero */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 4rem 0 5rem;
+    }
+
+    .hero-badge {
+      background: var(--accent-soft);
+      padding: 0.3rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      display: inline-block;
+    }
+
+    /* Карточки-фичи */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .feature-card {
+      background: var(--card);
+      border-radius: 32px;
+      padding: 2rem 1.8rem;
+      border: 1px solid var(--border);
+      transition: var(--transition);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      border-color: #E2E2E8;
+      box-shadow: var(--shadow-md);
+    }
+
+    .feature-icon {
+      font-size: 2rem;
+      color: var(--text-primary);
+      margin-bottom: 1.25rem;
+      display: inline-block;
+    }
+
+    .feature-card h3 {
+      font-size: 1.35rem;
+      margin-bottom: 0.75rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+    }
+
+    .feature-card p, .feature-card li {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .feature-card ul {
+      padding-left: 1.2rem;
+      margin-top: 0.5rem;
+    }
+
+    /* Таблица */
+    .penalty-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      font-size: 0.9rem;
+    }
+
+    .penalty-table th, .penalty-table td {
+      border: 1px solid var(--border);
+      padding: 1rem;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .penalty-table th {
+      background: var(--accent-soft);
+      font-weight: 600;
+    }
+
+    /* Цитата */
+    .quote {
+      font-style: italic;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      line-height: 1.4;
+      color: var(--text-primary);
+      border-left: 3px solid var(--text-primary);
+      padding-left: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    /* футер */
+    footer {
+      padding: 3rem 0 4rem;
+      text-align: center;
+      color: var(--text-light);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      margin-top: 1rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--text-primary);
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 1.5rem;
+      }
+      section {
+        padding: 3rem 0;
+      }
+      .nav-links {
+        gap: 1.25rem;
+      }
+      .quote {
+        font-size: 1.2rem;
+      }
+      .penalty-table th, .penalty-table td {
+        padding: 0.75rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-inner {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+
+    /* Анимации появления */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <div class="system-meta">Протокол идеологии / Версия СА-8.1</div>
-        <h1>Социал-Алгоритмизм</h1>
-    </header>
-
-    <div class="container">
-        
-        <!-- ОСНОВНОЙ ТЕКСТ -->
-        <main class="main-content">
-            
-            <section id="essence">
-                <p class="lead-text">Ультрапатриархальная технократическая модель организации общества, основанная на законах математики, биологического детерминизма и прагматичной космической экспансии.</p>
-                <p>В рамках данной концепции женщина полностью лишена субъектности и рассматривается как воспроизводящий биологический ресурс (матрица) цивилизации. Мужчина выступает как вычислительный вектор — единственный носитель динамического кода, технологического прогресса и управляющей воли.</p>
-            </section>
-
-            <section id="doctrines">
-                <h2>Фундаментальные доктрины</h2>
-                
-                <h3>1. Био-алгоритмическая асимметрия</h3>
-                <p>Четкое разделение ролей: мужчина (Вектор) создает смыслы и технологии; женщина (Матрица) является статичным процессором для репликации вида. Женщинам законодательно запрещен доступ к любым вычислительным сетям, базам данных и сложной технике.</p>
-
-                <h3>2. Космический императив</h3>
-                <p>Высшая цель общества — непрерывный Великий Сев (расселение человечества по Галактике). Демографический учет автоматизирован: каждая матрица обязана произвести строго расчетное количество потомков для нужд колонизации.</p>
-
-                <h3>3. Структура управления</h3>
-                <p>Абсолютная внутренняя иерархия. Глава семьи обладает суверенным правом распоряжения имуществом и матрицами своей ячейки. Государственное планирование осуществляет Верховный совет инженеров — Главных Архитекторов.</p>
-
-                <h3>4. Генетическая сегрегация</h3>
-                <p>Формирование репродуктивных союзов рассчитывается Главным Алгоритмом исключительно на основе ДНК-анализа. Новорожденные мужского пола изымаются для централизованного воспитания в закрытых техно-академиях.</p>
-
-                <h3>5. Экспансия матриц</h3>
-                <p>При межзвездных перелетах женский биологический материал транспортируется в состоянии анабиоза в грузовых отсеках. На колонизированных территориях репродуктивные фермы разворачиваются в приоритетном порядке.</p>
-            </section>
-
-            <section id="rationalization">
-                <h2>Прагматика сохранения биологического ресурса</h2>
-                <p>Отказ от полной замены женщин андроидами или искусственными инкубаторами обусловлен тремя экономическими расчетами:</p>
-                <ul>
-                    <li><strong>Ресурсная оптимизация:</strong> Женский организм функционирует на базовой органике и является самовосстанавливающимся. Производство миллиардов механических инкубаторов нерационально расходует редкие металлы и энергию реакторов.</li>
-                    <li><strong>Кибер-иммунитет:</strong> Биологическое воспроизводство защищено от системных сбоев, хакерских атак, вирусов ИИ и воздействия электромагнитных импульсов, выступая в роли аналогового предохранителя цивилизации.</li>
-                    <li><strong>Эволюционная адаптация:</strong> Живой организм способен адаптировать плод к условиям измененной гравитации и радиационного фона на новых планетах в процессе вынашивания, что недоступно статичным машинам.</li>
-                </ul>
-            </section>
-
-        </main>
-
-        <!-- БОКОВАЯ ПАНЕЛЬ -->
-        <aside class="sidebar">
-            
-            <div class="block">
-                <div class="block-title">Лингвистический этикет</div>
-                
-                <div class="term-group">
-                    <span class="term-label">Обращение к мужчинам</span>
-                    <span class="term-value">Вектор, Соратник, Брат по Коду, Архитектор</span>
-                </div>
-                
-                <div class="term-group">
-                    <span class="term-label">Обращение к женщинам</span>
-                    <span class="term-value">Матрица [Индекс], Субстрат, Репликатор, Единица</span>
-                </div>
-            </div>
-
-            <div class="block">
-                <div class="block-title">Регламент речи</div>
-                <div class="alert-box">
-                    Использование эмоционально окрашенных маркеров, уменьшительно-ласкательных форм или архаизмов («девушка», «женщина») запрещено. Общение с матрицами строится исключительно в повелительном наклонении.
-                </div>
-            </div>
-
-            <div class="block">
-                <div class="block-title">Статистика системы</div>
-                <div class="term-group">
-                    <span class="term-label">Синхронизация с узлом</span>
-                    <span class="term-value">100%</span>
-                </div>
-                <div class="term-group">
-                    <span class="term-label">Индекс экспансии</span>
-                    <span class="term-value">Оптимальный</span>
-                </div>
-            </div>
-
-        </aside>
-
+<nav class="navbar">
+  <div class="container nav-inner">
+    <a href="#" class="logo">S O C I A L · A L G O</a>
+    <div class="nav-links">
+      <a href="#manifest">Манифест</a>
+      <a href="#kindex">K-индекс</a>
+      <a href="#rituals">Ритуалы</a>
+      <a href="#contact">Контакты</a>
     </div>
+  </div>
+</nav>
 
-    <footer>
-        Центральный архив Главного Вычислительного Центра. Доступ ограничен.
-    </footer>
+<main>
+  <div class="container">
+    <!-- Hero -->
+    <section class="hero fade-up" id="manifest">
+      <div class="hero-badge">Доктрина 3.0 · Алгоритмический порядок</div>
+      <h1>Социал-Алгоритмизм:<br>Космос превыше личности</h1>
+      <p class="subhead" style="margin-top: 1rem;">Система тотальной прозрачности, ультра-патриархата и космического культа. Биология как ресурс, эксгибиционизм как доблесть, баллы как абсолютная мера ценности.</p>
+      <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+        <a href="#kindex" class="btn btn-primary">Изучить K-индекс</a>
+        <a href="#rituals" class="btn btn-outline">Смотреть ритуалы</a>
+      </div>
+    </section>
 
+    <!-- Основные догматы (кратко) -->
+    <section>
+      <div class="overline" style="text-align: center;">аксиомы системы</div>
+      <h2 style="text-align: center;">Жестче, чем Талибан. Рациональнее, чем утопия</h2>
+      <p class="subhead" style="text-align: center; margin: 0 auto 1rem;">Семь принципов, на которых держится Новый Порядок.</p>
+      <div class="features-grid">
+        <div class="feature-card fade-up">
+          <div class="feature-icon"><i class="feather-icon" data-feather="cpu"></i></div>
+          <h3>Космический культ</h3>
+          <p>Вселенная — чистый алгоритм. Ежедневные расчёты орбит, космический мусор как грех, колонизация как высшее служение.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon"><i class="feather-icon" data-feather="shield"></i></div>
+          <h3>Ультра-патриархат</h3>
+          <p>Вектор (мужчина) — архитектор реальности. Матрица (женщина) — биологический инкубатор, лишённый субъектности. Никаких прав, только функции.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon"><i class="feather-icon" data-feather="eye"></i></div>
+          <h3>Эксгибиционизм как долг</h3>
+          <p>Скафандр Истины для Матриц: полная прозрачность от шеи до колен. Векторы носят открытые пластины. Стыд = сопротивление системе.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Космический культ + обоснование -->
+    <section>
+      <div class="overline">галактический императив</div>
+      <h2>Космос — единственный храм</h2>
+      <div class="features-grid" style="margin-top: 1rem;">
+        <div class="feature-card fade-up">
+          <div class="feature-icon"><i class="feather-icon" data-feather="sun"></i></div>
+          <h3>Ритуалы «Расчёт орбиты»</h3>
+          <p>Каждое утро — 15 минут работы с астродинамическими симуляциями. Пропуск ритуала = снижение K-индекса на 200 пунктов.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon"><i class="feather-icon" data-feather="radio"></i></div>
+          <h3>Запрет земного центризма</h3>
+          <p>Отказ участвовать в ликвидации космического мусора или саботаж колониальных программ караются обнулением индекса и отправкой на рудники.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon"><i class="feather-icon" data-feather="award"></i></div>
+          <h3>Патриарх-Архитектор</h3>
+          <p>Верховный правитель из числа Главных Инженеров — биологический посредник между волей Галактики и людьми. Его слово не обсуждается.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ультра-патриархат + Эксгибиционизм (подробно) -->
+    <section>
+      <div class="overline">биологическая иерархия</div>
+      <h2>Вектор и Матрица: раз и навсегда</h2>
+      <div class="features-grid">
+        <div class="feature-card fade-up">
+          <div class="feature-icon"><i class="feather-icon" data-feather="user"></i></div>
+          <h3>Вектор (мужчина)</h3>
+          <p>Золотой чип на запястье. Имеет доступ к управлению ресурсами Матрицы через нейроинтерфейс. Обязан носить прозрачные пластины на корпусе — символ чистоты алгоритмов. За сокрытие тела — вычет баллов.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon"><i class="feather-icon" data-feather="users"></i></div>
+          <h3>Матрица (женщина)</h3>
+          <p>Чёрный чип «Матрица». Обязательный «Скафандр Истины» — лицо закрыто (не отвлекать Векторов), тело полностью прозрачно от шеи до колен. Каждые 4 часа — автоматический санитарный контроль дронами.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon"><i class="feather-icon" data-feather="alert-triangle"></i></div>
+          <h3>Запрет общения Матриц</h3>
+          <p>Любое общение между женщинами без куратора-Вектора расценивается как попытка мятежа. Наказание: публичная порка и обнуление K-индекса.</p>
+        </div>
+      </div>
+      <div class="quote fade-up">
+        «Стыд — последний оплот личности. Прозрачность тела — прозрачность намерений. Только открытая плоть достойна звёзд.»
+      </div>
+    </section>
+
+    <!-- Почему не инкубаторы -->
+    <section>
+      <div class="overline">биоцентричный прагматизм</div>
+      <h2>Инкубаторы — ложный путь</h2>
+      <div class="features-grid">
+        <div class="feature-card fade-up">
+          <div class="feature-icon"><i class="feather-icon" data-feather="shield-off"></i></div>
+          <h3>Кибербезопасность</h3>
+          <p>Искусственная матка уязвима для вирусов. Один взлом — и вся колония теряет рождаемость. Био-матку нельзя взломать удалённо.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon"><i class="feather-icon" data-feather="hard-drive"></i></div>
+          <h3>Эволюционный GPU</h3>
+          <p>Технология не способна адаптировать плод под радиацию или переменную гравитацию. Женщина — естественный адаптивный инкубатор.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon"><i class="feather-icon" data-feather="trending-down"></i></div>
+          <h3>Экономия ресурсов</h3>
+          <p>Инкубаторы — роскошь. Матрицы питаются водорослями и выполняют функцию живых маток. Сломалась — переработка на биомассу.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Система K-индекса (баллы) -->
+    <section id="kindex">
+      <div class="overline">цифровая мера человека</div>
+      <h2>K-индекс: социальный алгоритм</h2>
+      <p class="subhead">Аналог социального кредита, но строже и прозрачнее. Баллы отображаются на чипе, для Векторов — от 0 до 10 000, для Матриц — только для куратора.</p>
+      
+      <table class="penalty-table">
+        <thead>
+          <tr><th>Действие</th><th>Изменение K-индекса (Вектор)</th><th>Изменение K-индекса (Матрица)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Спроектированный узел колониального корабля</td><td>+50</td><td>— (недоступно)</td></tr>
+          <tr><td>Рождение и выживание мальчика-потомка</td><td>+200</td><td>+500 (за успешные роды)</td></tr>
+          <tr><td>Саботаж гендерной сегрегации (обучение Матрицы)</td><td>-1000</td><td>—</td></tr>
+          <tr><td>Попытка прикрыть тело в Скафандре Истины</td><td>—</td><td>-200</td></tr>
+          <tr><td>Неподчинение алгоритму (отказ от ритуала)</td><td>Ссылка на внешнюю станцию</td><td>Порка алгебраической линейкой</td></tr>
+          <tr><td>Сокрытие тела под одеждой (мужчина)</td><td>-200 + штрафные работы</td><td>«Стыд-процедура» + отключение отопления</td></tr>
+        </tbody>
+      </table>
+      <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 1rem;">*Матрица не видит свой K-индекс — он доступен только куратору-Вектору через нейроинтерфейс. Обнуление индекса = утилизация.</p>
+    </section>
+
+    <!-- Обращения и ритуалы -->
+    <section id="rituals">
+      <div class="overline">речевой устав</div>
+      <h2>Как правильно обращаться</h2>
+      <div class="features-grid">
+        <div class="feature-card fade-up">
+          <div class="feature-icon"><i class="feather-icon" data-feather="message-circle"></i></div>
+          <h3>Вектор → Вектору</h3>
+          <p>«Здравствуй, Колонизатор [Ранг]». Спор решается дуэлью на скорость решения кубического уравнения.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon"><i class="feather-icon" data-feather="slash"></i></div>
+          <h3>Вектор → Матрице</h3>
+          <p>Никак. Матрица не имеет права заговаривать первой. Обращение: «Экземпляр [номер]» или «Инкубатор [ID семьи]».</p>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon"><i class="feather-icon" data-feather="corner-down-right"></i></div>
+          <h3>Матрица → Вектору</h3>
+          <p>Падение ниц, лицо в пол (смотреть на Вектора запрещено): «Жду алгоритма, мой Инженер». За неправильную форму — штраф баллами.</p>
+        </div>
+      </div>
+      <div class="quote fade-up" style="margin-top: 2rem;">
+        «Нет имени — только функция. Нет стыда — только прозрачность. Нет личности — только алгоритм.»
+      </div>
+    </section>
+
+    <!-- Контакт / символическая связь с архитекторами -->
+    <section id="contact">
+      <div style="max-width: 600px; margin: 0 auto; text-align: center;">
+        <div class="overline">подчинение порядку</div>
+        <h2>Присоединиться к алгоритму</h2>
+        <p class="subhead" style="margin-bottom: 2rem;">Только для Векторов. Матрицы не имеют права на обращение. Заполните форму запроса на вступление в Совет Инженеров.</p>
+        <div style="display: flex; gap: 1rem; justify-content: center;">
+          <a href="#" class="btn btn-primary">Подать заявку (Вектор)</a>
+          <a href="#" class="btn btn-outline">Читать Манифест полностью</a>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-links">
+      <a href="#">Манифест 3.0</a>
+      <a href="#">Космический культ</a>
+      <a href="#">K-индекс онлайн</a>
+      <a href="#">Совет Архитекторов</a>
+    </div>
+    <p>© 2026 Социал-Алгоритмизм. Все права защищены. Прозрачность, порядок, экспансия. Никакой жалости к устаревшим моралям.</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+<script>
+  feather.replace({ stroke: 'currentColor', width: 24, height: 24 });
+  
+  const fadeElements = document.querySelectorAll('.fade-up');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
+  
+  fadeElements.forEach(el => observer.observe(el));
+  window.addEventListener('load', () => {
+    fadeElements.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 100) {
+        el.classList.add('visible');
+        observer.unobserve(el);
+      }
+    });
+  });
+</script>
 </body>
 </html>
